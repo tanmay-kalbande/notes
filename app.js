@@ -31,7 +31,7 @@ const MarkdownEngine = (() => {
     function getSafeLinkHref(url) {
         const trimmed = (url || '').trim();
         if (!trimmed) return null;
-        if (/^(#|\/|\.\\/|\.\.\/)/.test(trimmed)) return trimmed;
+        if (/^(#|\/|\.\/|\.\.\/)/.test(trimmed)) return trimmed;
         try {
             const parsed = new URL(trimmed, window.location.href);
             if (['http:', 'https:', 'mailto:', 'tel:'].includes(parsed.protocol)) {
