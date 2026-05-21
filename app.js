@@ -143,6 +143,8 @@ const MarkdownEngine = (() => {
             /(^|\n)\s*([-*_])(?:\s*\2){2,}\s*($|\n)/.test(t) ||
             /\*\*[^*\n]+\*\*/.test(t) ||
             /__[^_\n]+__/.test(t) ||
+            /\*[^*\n]+\*/.test(t) ||
+            /_[^_\n]+_/.test(t) ||
             /~~[^~\n]+~~/.test(t) ||
             /`[^`\n]+`/.test(t) ||
             /\[[^\]\n]+\]\([^)]+\)/.test(t) ||
@@ -1651,7 +1653,7 @@ const AiEnhancer = (() => {
 
         try {
             const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemma-2-27b-it:generateContent?key=${apiKey}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
