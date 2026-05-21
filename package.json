@@ -1,0 +1,19 @@
+{
+  "name": "enhanced-macos-notes",
+  "version": "2.1.0",
+  "description": "A sleek, offline-capable note-taking app with rich text editing, markdown support, and AI enhancement.",
+  "main": "app.js",
+  "scripts": {
+    "build": "echo 'Building static files...'",
+    "start": "npx -y serve ."
+  },
+  "keywords": [
+    "notes",
+    "macos",
+    "markdown",
+    "offline-first",
+    "pwa"
+  ],
+  "author": "Tanmay Kalbande",
+  "license": "MIT"
+}
