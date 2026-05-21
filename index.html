@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced macOS Notes</title>
+    <meta name="description" content="A sleek, offline-capable note-taking app with rich text editing, markdown support, and AI enhancement.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="resources/favicon.png" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="window">
+      <div class="titlebar">
+          <div class="traffic-lights">
+              <div class="traffic-light close"></div>
+              <div class="traffic-light minimize"></div>
+              <div class="traffic-light expand"></div>
+          </div>
+          <div class="window-title">Enhanced macOS Notes</div>
+          <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <button class="action-btn theme-switch titlebar-theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+          <div class="about-container">
+              <button class="action-btn about-btn" title="About"><i class="fas fa-info-circle"></i></button>
+              <div class="about-tooltip">
+                  <div class="about-header">
+                      <div class="about-icon"><i class="fas fa-pen-to-square"></i></div>
+                      <h4>NotesMac Enhanced</h4>
+                  </div>
+                  <div class="about-content">
+                      <div class="about-item">
+                          <span class="about-label">Version</span>
+                          <span class="about-value">2.0.0</span>
+                      </div>
+                      <div class="about-item">
+                          <span class="about-label">Created by</span>
+                          <span class="about-value"><a href="https://tanmay-kalbande.github.io/" target="_blank">Tanmay Kalbande</a></span>
+                      </div>
+                      <div class="about-social">
+                          <a href="https://github.com/tanmay-kalbande" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                          <a href="https://linkedin.com/in/tanmay-kalbande" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                          <a href="https://tanmay-kalbande.github.io/" target="_blank" title="Portfolio"><i class="fas fa-globe"></i></a>
+                      </div>
+                  </div>
+                  <div class="about-footer">
+                      <p class="copyright">&copy; 2025 Enhanced macOS Notes</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                     <button class="new-note-btn icon-btn" title="New Note">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="search-bar">
+                        <span class="search-icon"><i class="fas fa-search"></i></span>
+                        <input type="text" class="search-input" placeholder="Search notes...">
+                        <div class="search-help">
+                            <button class="search-help-btn" title="Search Help">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                            <div class="search-help-tooltip">
+                                <h4>Advanced Search</h4>
+                                <ul>
+                                    <li><code>"exact phrase"</code></li>
+                                    <li><code>term1 term2</code> (match either)</li>
+                                    <li><code>+required</code></li>
+                                    <li><code>-excluded</code></li>
+                                </ul>
+                                <p>Example: <code>+"action items" -meeting</code></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="notes-list-container">
+                    <span class="notes-count">0 notes</span>
+                    <ul class="notes-list"></ul>
+                </div>
+                <div class="sidebar-footer">
+                    <button class="import-btn icon-btn" title="Import Notes">
+                        <i class="fas fa-file-import"></i>
+                    </button>
+                    <input type="file" class="import-file-input" accept=".json">
+                     <button class="export-all-btn icon-btn" title="Export All Notes">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="resize-handle"></div>
+            <div class="main-area">
+                <div class="editor-placeholder">
+                    <div class="placeholder-icon"><i class="fas fa-pen-to-square"></i></div>
+                    <h2>No Note Selected</h2>
+                    <p>Select a note from the sidebar or create a new one.</p>
+                </div>
+                <div class="editor-wrapper">
+                    <div class="editor-toolbar">
+
+                        <button class="toolbar-btn format-btn" data-command="bold" title="Bold (Ctrl+B)"><i class="fas fa-bold"></i></button>
+                        <button class="toolbar-btn format-btn" data-command="italic" title="Italic (Ctrl+I)"><i class="fas fa-italic"></i></button>
+                        <button class="toolbar-btn format-btn" data-command="underline" title="Underline (Ctrl+U)"><i class="fas fa-underline"></i></button>
+                        <button class="toolbar-btn format-btn" data-command="strikeThrough" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+                        <span class="toolbar-separator"></span>
+
+                        <button class="toolbar-btn format-btn" data-command="insertUnorderedList" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                        <button class="toolbar-btn format-btn" data-command="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                        <button class="toolbar-btn format-btn" data-command="formatBlock" data-value="blockquote" title="Blockquote"><i class="fas fa-quote-left"></i></button>
+                        <span class="toolbar-separator"></span>
+
+                        <button class="toolbar-btn font-size-btn" id="font-decrease-btn" title="Decrease Font Size"><i class="fas fa-font" style="font-size: 11px;"></i></button>
+                        <span id="font-size-val" style="font-size: 12px; color: var(--text-secondary); font-family: var(--font-ui); font-weight: 500; min-width: 32px; text-align: center; user-select: none;">16px</span>
+                        <button class="toolbar-btn font-size-btn" id="font-increase-btn" title="Increase Font Size"><i class="fas fa-font" style="font-size: 15px;"></i></button>
+                        <span class="toolbar-separator"></span>
+
+                        <button class="toolbar-btn action-btn ai-enhance-btn" id="ai-enhance-btn" title="AI Note Enhancer"><i class="fas fa-wand-magic-sparkles"></i></button>
+                        <button class="toolbar-btn action-btn export-note-btn" title="Export Note"><i class="fas fa-file-export"></i></button>
+                        <button class="toolbar-btn action-btn delete-note-btn" title="Delete Note"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="editor-content">
+                        <input type="text" class="note-title" placeholder="Note Title">
+                        <div class="note-body" contenteditable="true" spellcheck="false" placeholder="Start writing..."></div>
+                    </div>
+                    <div class="editor-statusbar">
+                         <div class="statistics">
+                            <div class="statistic word-count"><i class="fas fa-text-width"></i> 0 words</div>
+                            <div class="statistic char-count"><i class="fas fa-pen-nib"></i> 0 characters</div>
+                            <div class="statistic reading-time"><i class="fas fa-clock"></i> 0 min read</div>
+                        </div>
+                        <span class="last-modified"></span>
+                    </div>
+                </div>
+
+                <div class="search-results-view" style="display: none;">
+                     <div class="search-results-header">
+                        Search Results for "<span class="search-query-display"></span>"
+                    </div>
+                    <div class="search-results-list-container">
+
+                    </div>
+                     <div class="search-no-results" style="display: none;">
+                        No results found matching your query.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Settings & Enhancer Modal -->
+    <div id="ai-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> AI Note Enhancer</h3>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="api-key-section">
+                    <label for="gemini-api-key">Gemini API Key</label>
+                    <div class="api-key-input-container">
+                        <input type="password" id="gemini-api-key" placeholder="Enter your Gemini API Key...">
+                        <button class="toggle-password-btn" id="toggle-api-key-visibility" title="Show/Hide Key"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <p class="api-key-help">Get a free API key from <a href="https://aistudio.google.com/" target="_blank">Google AI Studio</a>. Keys are stored locally in your browser.</p>
+                </div>
+                
+                <div class="ai-options-section">
+                    <label>Enhancement Style</label>
+                    <div class="ai-options-grid">
+                        <button class="ai-opt-btn active" data-action="enhance">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                            <span>Enhance Formatting</span>
+                            <small>Fix markdown, structure text, add headers &amp; tables</small>
+                        </button>
+                        <button class="ai-opt-btn" data-action="summarize">
+                            <i class="fas fa-align-left"></i>
+                            <span>Summarize</span>
+                            <small>Create a concise summary and key takeaways</small>
+                        </button>
+                        <button class="ai-opt-btn" data-action="grammar">
+                            <i class="fas fa-spell-check"></i>
+                            <span>Fix Grammar</span>
+                            <small>Correct spelling, grammar, and improve readability</small>
+                        </button>
+                        <button class="ai-opt-btn" data-action="todo">
+                            <i class="fas fa-list-check"></i>
+                            <span>Action Items</span>
+                            <small>Extract checkboxes and task list from note</small>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="ai-preview-section" style="display: none;">
+                    <label>Preview Enhanced Note</label>
+                    <div class="ai-preview-container">
+                        <div class="ai-preview-content note-body"></div>
+                    </div>
+                </div>
+
+                <div class="ai-loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <span class="loading-text">Gemini is polishing your note...</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn cancel-btn" id="ai-cancel-btn">Cancel</button>
+                <button class="modal-btn enhance-submit-btn" id="ai-submit-btn">Enhance Note</button>
+                <button class="modal-btn accept-changes-btn" id="ai-accept-btn" style="display: none;">Apply Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification">
+        <span class="notification-icon"><i class="fas fa-check-circle"></i></span>
+        <span class="notification-message"></span>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script src="env.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

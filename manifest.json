@@ -1,0 +1,19 @@
+{
+  "name": "Notes Pro - Offline Capable",
+  "short_name": "NotesPro",
+  "description": "An enhanced, installable note-taking application for desktop.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#2d2d2d",
+  "theme_color": "#2d2d2d",
+  "orientation": "any",
+  "scope": ".",
+  "icons": [
+    {
+      "src": "resources/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
