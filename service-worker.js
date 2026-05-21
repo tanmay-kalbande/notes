@@ -1,5 +1,5 @@
-// Service Worker for Enhanced macOS Notes v2.0
-const CACHE_NAME = 'notes-pro-cache-v2.0';
+// Service Worker for Enhanced macOS Notes v2.1
+const CACHE_NAME = 'notes-pro-cache-v2.1';
 
 // Core app shell files
 const APP_SHELL_FILES = [
@@ -7,12 +7,6 @@ const APP_SHELL_FILES = [
     'index.html',
     'styles.css',
     'app.js',
-    'modules/markdown.js',
-    'modules/store.js',
-    'modules/search.js',
-    'modules/editor.js',
-    'modules/ui.js',
-    'modules/ai.js',
     'manifest.json',
     'resources/favicon.png'
 ];
